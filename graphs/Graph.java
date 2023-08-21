@@ -1,10 +1,8 @@
 import java.util.*;
-//using https://www.geeksforgeeks.org/implementing-generic-graph-in-java/#
-//implementation
+//Using https://www.youtube.com/watch?v=dS44jZyj5gU&ab_channel=freeCodeCamp.org 
 //this is largely not my own code - Chris
-public class Graph<T> {
+public class Graph {
     
-    private Map<T, List<T>> map = new HashMap<>();
 
     
 }
