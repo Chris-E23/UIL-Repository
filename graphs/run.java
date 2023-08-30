@@ -1,65 +1,82 @@
 import java.util.*;
 import java.util.Map.Entry;
-
+import static java.lang.System.out;
 //IMPLEMENTATION https://www.baeldung.com/java-dijkstra 
 
 public class run {
-    
-
-
-
+  
 
     public static void main(String args[]){
 
+        String data = "A, B, C, D, E, F\nA, B, 10\nA, C, 1\nB, D, 12\nB, F, 15\nC, E, 10\nD, E, 2\nD, F, 1\nF, E, 5";
+        Scanner scanner = new Scanner(data);
+        String[] nodearr = scanner.nextLine().split(",\s");
 
-        /* 
-        unweightedUndirectedGraph graph = new unweightedUndirectedGraph(4);
-        weightedUndirectedGraph graph2 = new weightedUndirectedGraph(4);
-        unweightedDirectedGraph graph3 = new unweightedDirectedGraph(4);
-        weightedDirectedGraph graph4 = new weightedDirectedGraph(4);
+        //out.println(Arrays.toString(nodearr));
+
+        List<Node> nodes = new ArrayList<>();
+
+        for(int i = 0; i < nodearr.length; i++){
+            Node newNode = new Node(nodearr[i]);
+            nodes.add(newNode);
+        }
       
 
-        graph.addEdge(0,1);
-        graph.addEdge(0,3);
-        System.out.printf("%s", graph);
-        System.out.printf("\n");
-        graph2.addEdge(0,1, 4);
-        graph2.addEdge(0,3, 6);
-        System.out.printf("%s", graph2);
-        System.out.printf("\n");
-        graph3.addEdge(0,1);
-        graph3.addEdge(0,3);
-        System.out.printf("%s", graph3);
-        System.out.printf("\n");
-        graph4.addEdge(0,1, 4);
-        graph4.addEdge(0,3, 6);
-        System.out.printf("%s", graph4);
+        List<String> nodeLines = new ArrayList<>();
 
+        while(scanner.hasNext()){
+            nodeLines.add(scanner.nextLine());
+        }
+        //out.println(nodeLines);
+
+
+        for(int i = 0; i < nodeLines.size(); i++){
+                String[] line = nodeLines.get(i).split(",\s");
+                //out.printf("%s\n", Arrays.toString(line));
+                for(int d = 0; d < nodes.size(); d++){
+                    if(nodes.get(d).getName().equals(line[0])){
+                        for(int k = 0; k < nodes.size(); k++){
+                         if(nodes.get(k).getName().equals(line[1])){
+                            nodes.get(d).addDestination(nodes.get(k), Integer.parseInt(line[2]));
+                     }
+                        
+                    }
+                       
+
+
+                }
+        }
+
+
+        
+
+    }
+
+    /* 
+        for(Node node : nodes){
+
+            out.printf("\n%s", node.getAdjacentNodes());
+        }
     */
-
-        String data = "A, B, C, D \n A, B, 10 \n A, C, 15 \n C, E, 10 \n D, E, 2\n D, F, 1 \n F, E, 5";
-        Scanner scanner = new Scanner(data);
-
-        List<String> nodes;
-
-        String[] nodearr = scanner.nextLine().split(",");
+        //out.printf("\n%s", nodes.get(1));
 
 
+        Graph2 graph = new Graph2();
 
-        System.out.println(Arrays.toString(nodearr));
-
-
-
-    }
-
-    public List<Node> buildGraph(List<String> nodeList){
-        return null; //placeholder
+        for(int i = 0; i < nodes.size(); i++){
+            graph.addNode(nodes.get(i));
+        }
+        out.printf("\n%s", graph.getNode("A").getDistance());
+        graph = calculateShortestPathFromSource(graph, nodes.get(0));
+        out.printf("\n%s", graph.getNode("A").getDistance());
+}
 
 
 
-    }
+    
 
-    public static Graph calculateShortestPathFromSource(Graph graph, Node source){
+
+    public static Graph2 calculateShortestPathFromSource(Graph2 graph, Node source){
             source.setDistance(0);
 
             Set<Node> settledNodes = new HashSet<>();
@@ -71,7 +88,7 @@ public class run {
             while(unsettledNodes.size() != 0 ){
 
                 Node currentNode = getLowestDistanceNode(unsettledNodes);
-                unsettledNodes.remove(currentNode);
+               unsettledNodes.remove(currentNode);
 
                 for(Entry< Node,Integer > adjacencyPair : currentNode.getAdjacentNodes().entrySet()){
                     Node adjacentNode = adjacencyPair.getKey();
@@ -120,7 +137,7 @@ public class run {
 
         Integer sourceDistance = sourceNode.getDistance();
 
-        if(sourceDistance+ edgeWeight < evaluationNode.getDistance()){
+        if(sourceDistance+edgeWeight < evaluationNode.getDistance()){
 
             evaluationNode.setDistance(sourceDistance + edgeWeight); 
             LinkedList<Node> shortestPath = new LinkedList<>((sourceNode.getShortestPath()));

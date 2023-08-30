@@ -29,7 +29,7 @@ public Node(String name){
 
 public void setDistance(int distance){
 
-     adjacentNodes.put(this, distance);
+    adjacentNodes.put(this, distance);
 
 }
 
@@ -41,8 +41,6 @@ public Map<Node, Integer> getAdjacentNodes(){
 
 
 public Integer getDistance(){
-
-
 
     return this.distance; 
 }
@@ -56,6 +54,13 @@ public List<Node> getShortestPath(){
 public void setShortestPath(List shortestPath2){
 
     this.shortestPath = shortestPath2; 
+}
+
+
+public String getName(){
+
+
+    return this.name;
 }
 }
 

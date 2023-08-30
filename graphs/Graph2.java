@@ -10,6 +10,19 @@ public class Graph2 {
         
     }
 
+
+    public Node getNode(String nodeName){
+        Iterator<Node> it = nodes.iterator();
+
+        while(it.hasNext()){
+            if(it.next().getName().equals(nodeName))
+            return it.next();
+            
+        }
+        return null;
+    }
+
+    
     
 
 }
