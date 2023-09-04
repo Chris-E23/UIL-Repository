@@ -14,9 +14,6 @@ Map<Node, Integer> adjacentNodes = new HashMap<>();
 
 
 public void addDestination(Node destination, int distance){
-
-    this.distance = distance; 
-
     adjacentNodes.put(destination, distance);
 
 }
@@ -29,7 +26,7 @@ public Node(String name){
 
 public void setDistance(int distance){
 
-    adjacentNodes.put(this, distance);
+    this.distance = distance;
 
 }
 

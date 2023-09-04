@@ -11,12 +11,21 @@ public class Graph2 {
     }
 
 
+    public Set<Node> getNodes(){
+
+        return nodes;
+    }
+
     public Node getNode(String nodeName){
         Iterator<Node> it = nodes.iterator();
 
         while(it.hasNext()){
-            if(it.next().getName().equals(nodeName))
-            return it.next();
+            Node curr = it.next();
+            if(curr.getName().equals(nodeName)){
+
+                return curr;
+            }
+            
             
         }
         return null;

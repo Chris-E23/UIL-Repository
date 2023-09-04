@@ -66,9 +66,16 @@ public class run {
         for(int i = 0; i < nodes.size(); i++){
             graph.addNode(nodes.get(i));
         }
-        out.printf("\n%s", graph.getNode("A").getDistance());
-        graph = calculateShortestPathFromSource(graph, nodes.get(0));
-        out.printf("\n%s", graph.getNode("A").getDistance());
+        
+        
+        //out.printf("\n%s", graph.getNode("A").getDistance());
+        graph = calculateShortestPathFromSource(graph, graph.getNode("A"));
+        for(Node node : graph.getNodes()){
+
+             out.printf("\n%s", node.getName());
+             out.printf("\n%s", node.getDistance());
+        }
+       
 }
 
 
@@ -77,35 +84,38 @@ public class run {
 
 
     public static Graph2 calculateShortestPathFromSource(Graph2 graph, Node source){
+            
             source.setDistance(0);
-
+           
             Set<Node> settledNodes = new HashSet<>();
             Set<Node> unsettledNodes = new HashSet<>();
 
 
             unsettledNodes.add(source);
 
+          //  out.printf("\n%s", source);
+           // out.printf("\n%s", unsettledNodes);
+
             while(unsettledNodes.size() != 0 ){
 
                 Node currentNode = getLowestDistanceNode(unsettledNodes);
-               unsettledNodes.remove(currentNode);
+                //out.printf("\n%s", currentNode);
+                unsettledNodes.remove(currentNode); //remove the current Node b/c you're currently settling it 
 
                 for(Entry< Node,Integer > adjacencyPair : currentNode.getAdjacentNodes().entrySet()){
+                    //out.printf("\n%s", adjacencyPair);
                     Node adjacentNode = adjacencyPair.getKey();
                     Integer edgeWeight = adjacencyPair.getValue();
 
                     if(!settledNodes.contains(adjacentNode)){
 
-                        calculateMinimumDistance(adjacentNode, edgeWeight, currentNode);
-                        unsettledNodes.add(adjacentNode);
+                        calculateMinimumDistance(adjacentNode, edgeWeight, currentNode); //calculate the smallest distance from the source node to the next one
+                        unsettledNodes.add(adjacentNode); //add the node to unsettled nodes 
 
                     }
-                    settledNodes.add(adjacentNode);
+                    
                 }
-                
-
-
-
+                settledNodes.add(currentNode); //Find the minimum distance of the node, add it to the list
             }
             return graph;
             
@@ -119,14 +129,17 @@ public class run {
         Node lowestDistanceNode = null;
         int lowestDistance = Integer.MAX_VALUE;
 
+        
         for(Node node: unsettledNodes){
-
+            //out.printf("\n%s", node);
             int nodeDistance = node.getDistance();
+          // out.printf("\n%s", node.getDistance());
             if(nodeDistance < lowestDistance){
 
                 lowestDistance = nodeDistance; 
                 lowestDistanceNode = node; 
             }
+
         }
 
 
@@ -135,9 +148,9 @@ public class run {
     private static void calculateMinimumDistance(Node evaluationNode, Integer edgeWeight, Node sourceNode){
 
 
-        Integer sourceDistance = sourceNode.getDistance();
+        Integer sourceDistance = sourceNode.getDistance(); //get the distance of the currentNode 
 
-        if(sourceDistance+edgeWeight < evaluationNode.getDistance()){
+        if(sourceDistance+edgeWeight < evaluationNode.getDistance()){ //add the distance plus the edge weight to get the next node's total distance
 
             evaluationNode.setDistance(sourceDistance + edgeWeight); 
             LinkedList<Node> shortestPath = new LinkedList<>((sourceNode.getShortestPath()));
