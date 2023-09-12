@@ -100,14 +100,7 @@ public class run {
 
             unsettledNodes.add(source);
 
-<<<<<<< HEAD
-          //out.printf("\n%s", source);
-           // out.printf("\n%s", unsettledNodes);
-
-            while(unsettledNodes.size() != 0 ){
-=======
             while(unsettledNodes.size() != 0){
->>>>>>> 20816d85f193e03884bb38bb99f130b5fc0c35c4
 
                 Node currentNode = getLowestDistanceNode(unsettledNodes);
                 //out.printf("\n VISTING NODE %s!", currentNode.getName());

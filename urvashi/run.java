@@ -19,7 +19,7 @@ class Graph{
 class Node{ //Node Implementation
     private String name;
     private List<Node> shortestPath = new LinkedList<>();
-    private Integer distance = Integer.MAX_VALUE;
+    private Integer distance = 0;
 
     Map<Node, Integer> adjacentNodes = new HashMap<>();
 

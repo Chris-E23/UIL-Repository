@@ -18,7 +18,7 @@ class Node{
 
     private String name;
     private List<Node> shortestPath = new LinkedList<>();
-    private int distance = Integer.MAX_VALUE;
+    private int distance = Integer.MAX_VALUE-1;
     Map<Node, Integer> adjacentNodes = new HashMap<>();
     public Node(String name){
         this.name = name;
@@ -51,7 +51,7 @@ public class run {
     
     public static void main(String args[]) throws IOException{
         ArrayList<Node> nodes = new ArrayList<>();
-        Scanner s = new Scanner(new File("C:\\Users\\chris_3pokugv\\Documents\\uilrepo\\UIL-Repository\\graphs\\Urvashi\\urvashi.dat"));
+        Scanner s = new Scanner(new File("D:\\github uploads\\UIL-Repository\\graphs\\Urvashi\\urvashi.dat"));
         int testcases = Integer.parseInt(s.nextLine()); //get the total amount of test cases 
         while(s.hasNext()){ //Go thru the file 
           Character thing = s.next().charAt(0);//Get the first char of the first line 
@@ -60,7 +60,7 @@ public class run {
         
           if(thing > 48 && thing < 58){ //use ascii values to verify that it's an int 
             lines = Integer.parseInt(thing.toString()); //convert lines to the value
-             out.println(lines);
+             //out.println(lines);
             int spellcount = Integer.parseInt(s.next());
             //out.println(spellcount);
             Node source = new Node(s.next());
@@ -74,16 +74,17 @@ public class run {
             //building graph
             for(int i =0; i<lines; i++){
                Node node1 = new Node(s.next());
-               out.println(node1.getName());
+               //out.println(node1.getName());
                Node node2 = new Node(s.next());
-               out.println(node2.getName());
-                if(!nodes.contains(node1)){
+               //out.println(node2.getName());
+               node1.addNode(node2, Integer.parseInt(s.next()));  
+               if(!nodes.contains(node1)){
                     nodes.add(node1);
                 }
                 if(!nodes.contains(node2)){
                     nodes.add(node2);
                 }
-                node1.addNode(node2, Integer.parseInt(s.next())); 
+                
                 //add destinations according to file
             }
             
@@ -95,7 +96,8 @@ public class run {
             //graph built - should now run dijktra's algorithm
 
             graph = calcMinDistance(graph, nodes.get(0));
-            out.printf("%s",nodes.get(1).getDistance());
+            out.printf("\n%s", nodes.get(1).getAdjNodes());
+            out.printf("\n%s",nodes.get(1).getDistance());
 
           }
             
