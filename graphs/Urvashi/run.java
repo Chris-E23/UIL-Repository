@@ -20,6 +20,9 @@ class Node{
     private List<Node> shortestPath = new LinkedList<>();
     private int distance = Integer.MAX_VALUE;
     Map<Node, Integer> adjacentNodes = new HashMap<>();
+
+    ArrayList<ArrayList<Node>> allPossibleRoutes = new ArrayList<>();
+    
     public Node(String name){
         this.name = name;
     }
@@ -84,6 +87,7 @@ public class run {
                     nodes.add(node2);
                 }
                 node1.addNode(node2, Integer.parseInt(s.next())); 
+            
                 //add destinations according to file
             }
             
