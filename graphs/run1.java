@@ -7,7 +7,7 @@ import static java.lang.System.out;
  * I'm using out.printf cause we're learning that 
  * screw you if you don't like my comments
  */
-public class run {
+public class run1 {
   
 
     public static void main(String args[]){

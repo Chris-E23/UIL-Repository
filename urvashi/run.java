@@ -54,9 +54,9 @@ public class run {
     
     public static void main(String[] args) throws FileNotFoundException{
 
-        Scanner s = new Scanner(new File("urvashi_student.dat"));
+        Scanner s = new Scanner(new File("C:\\Users\\chris_3pokugv\\Documents\\uilrepo\\UIL-Repository\\urvashi\\urvashi_student.dat"));
         int testcases = s.nextInt();
-        
+        s.nextLine();
         List<List<String>> lines = new ArrayList<>();
         while(s.hasNextLine()){
            String line = s.nextLine();
@@ -68,8 +68,14 @@ public class run {
              //   lineArr.add(s.nextLine());
            // }
         }
-        out.printf("\n%s", lines);
+       // out.printf("\n%s", lines);
      
+        for(int i = 0; i < testcases; i++){
+            
+            
+
+        }
+
         
 
     }
