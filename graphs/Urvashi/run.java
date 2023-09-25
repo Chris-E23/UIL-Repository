@@ -56,7 +56,7 @@ public class run {
         while(s.hasNext()){ //Go thru the file 
           Character thing = s.next().charAt(0);//Get the first char of the first line 
           Integer lines = null;
-         int holder = thing;
+          int holder = thing;
         
           if(thing > 48 && thing < 58){ //use ascii values to verify that it's an int 
             lines = Integer.parseInt(thing.toString()); //convert lines to the value
@@ -97,7 +97,7 @@ public class run {
 
             graph = calcMinDistance(graph, nodes.get(0));
             out.printf("\n%s", nodes.get(1).getAdjNodes());
-            out.printf("\n%s",nodes.get(1).getDistance());
+            //out.printf("\n%s",nodes.get(1).getDistance());
 
           }
             
