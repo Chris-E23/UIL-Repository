@@ -4,3 +4,5 @@ for(java.util.Map.Entry<Generic, Generic> entryName : Map.entrySet()){
 }
 
 This is how to go through a map with a for each loop 
+
+Spliterator - 
