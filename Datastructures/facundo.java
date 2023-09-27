@@ -2,38 +2,48 @@ package Datastructures;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class facundo {
-
     public static void main(String[] args) throws FileNotFoundException{
-
         Scanner s = new Scanner(new File("Datastructures\\facundo.dat"));
         int lines = Integer.parseInt(s.nextLine());
         while(s.hasNext()){
-            System.out.println(shuffle(s.next(), Integer.parseInt(s.next())));
-        }
-    }
-
-    public static String shuffle(String deck, int shuffleAmount){
-        String[] cards= deck.split("");    
-        String[] arr = new String[cards.length];
-        for(int d = 0; d < shuffleAmount; d++){
-             for(int i = 0; i < deck.length(); i++){
-               arr[i] = arr[i];
-               arr[i+1] = arr[arr.length/2+1];
-               
+            String h = s.next();
+            int num = Integer.parseInt(s.next());
+            for(int i = 0; i < num; i++){
+                h = shuffle(h);
             }
-    }
-        String thing = "";
-        for(String s : arr){
-            thing += s;
+           System.out.println(h);
         }
-    
-        return thing;
+    }
+    public static String shuffle(String deck){
+        int length = 0;
+        String cards = "";
+         if(deck.length()%2 == 0){
+            length = deck.length()/2;
+            String holder = deck.substring(0, length-1);
+            holder += deck.substring(length);
+            holder += deck.substring(length-1, length);
+            for(int i = 0; i < length; i++){
+                cards += holder.substring(i+length-1, i+length);
+                if(i != length-1)
+                    cards += holder.substring(i,i+1);
+            }
+            cards += deck.substring(length-1, length);
+            }
+        else{
+                length = deck.length()/2;
+                String holder = deck.substring(0, length);
+                holder += deck.substring(length+1);
+                holder += deck.substring(length, length+1);
+                 for(int i = 0; i < length; i++){
+                    cards += holder.substring(i,i+1);
+                    cards += holder.substring(i+length, i+length+1);
+            }
+            cards += deck.substring(length, length+1);
+            } 
+        return cards;
     }
    
     
