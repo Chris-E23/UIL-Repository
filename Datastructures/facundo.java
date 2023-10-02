@@ -18,33 +18,20 @@ public class facundo {
         }
     }
     public static String shuffle(String deck){
-        int length = 0;
+        int length = deck.length()/2;
         String cards = "";
-         if(deck.length()%2 == 0){
-            length = deck.length()/2;
-            String holder = deck.substring(0, length-1);
-            holder += deck.substring(length);
-            holder += deck.substring(length-1, length);
-            for(int i = 0; i < length; i++){
-                cards += holder.substring(i+length-1, i+length);
+        String holder = ((deck.length() & 1) == 1) ? deck.substring(0, length) + deck.substring(length+1) + deck.substring(length, length+1) : deck.substring(0, length-1) + deck.substring(length) + deck.substring(length-1, length);
+         for(int i = 0; i < length; i++){
+                if(((deck.length() & 1) == 1)){
+                    cards+=holder.substring(i, i+1) + holder.substring(i+length, i+length+1);
+                }
+                else{
+                    cards += holder.substring(i+length-1, i+length);
                 if(i != length-1)
                     cards += holder.substring(i,i+1);
+                }
             }
-            cards += deck.substring(length-1, length);
-            }
-        else{
-                length = deck.length()/2;
-                String holder = deck.substring(0, length);
-                holder += deck.substring(length+1);
-                holder += deck.substring(length, length+1);
-                 for(int i = 0; i < length; i++){
-                    cards += holder.substring(i,i+1);
-                    cards += holder.substring(i+length, i+length+1);
-            }
-            cards += deck.substring(length, length+1);
-            } 
+            cards += ((deck.length() & 1) == 1) ? deck.substring(length, length+1) : deck.substring(length-1, length);
         return cards;
     }
-   
-    
 }
