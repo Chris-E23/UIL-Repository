@@ -18,7 +18,7 @@ class animal{
 
 
 }
-class dog extends animal{
+public class dog extends animal{
     
 
     private boolean happy; 
