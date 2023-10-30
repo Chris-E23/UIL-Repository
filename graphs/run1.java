@@ -72,7 +72,7 @@ public class run1 {
         }
         //out.printf("\n%s", graph.getNode("A").getDistance());
         graph = calculateShortestPathFromSource(graph, nodes.get(0));
-        out.printf("\n%s", graph.getNode("A").getDistance()); 
+        //out.printf("\n%s", graph.getNode("A").getDistance()); 
 
       //This current set up goes A->C->B->E->D->F with how the settled & unsettled nodes list goes
       //It's kinda wacky
